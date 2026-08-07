@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Guía de acceso | Git - Núcleo Linux UAGRM</title>
+  <meta name="description" content="Guía paso a paso para crear, activar y proteger tu cuenta en la plataforma Git de Núcleo Linux UAGRM.">
+  <link rel="canonical" href="https://help.git.nluagrm.org/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://help.git.nluagrm.org/">
+  <meta property="og:title" content="Guía de acceso | Git - Núcleo Linux UAGRM">
+  <meta property="og:description" content="Guía paso a paso para crear, activar y proteger tu cuenta en la plataforma Git de Núcleo Linux UAGRM.">
+  <meta property="og:site_name" content="Git · Núcleo Linux UAGRM">
+  <meta name="twitter:card" content="summary">
+
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4f7f5">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0c1210">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('helpgit-theme');
+        var eff = (t === 'light' || t === 'dark')
+          ? t
+          : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', eff);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+  <svg class="svg-sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <symbol id="i-sun" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+        </g>
+      </symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24">
+        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-auto" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/>
+        </g>
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 7v5l3 2"/>
+        </g>
+      </symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="5" y="11" width="14" height="9" rx="2"/>
+          <path d="M8 11V8a4 4 0 0 1 8 0v3"/>
+        </g>
+      </symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="18" height="14" rx="2"/>
+          <path d="m3 7 9 6 9-6"/>
+        </g>
+      </symbol>
+      <symbol id="i-user" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>
+        </g>
+      </symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24">
+        <path d="M12 3 5 6v5c0 4.5 3 8 7 10 4-2 7-5.5 7-10V6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-key" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="8" cy="15" r="4"/>
+          <path d="m11 12 8-8M16 7l3 3M13 10l2 2"/>
+        </g>
+      </symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="7" y="3" width="10" height="18" rx="2.5"/>
+          <path d="M11 18h2"/>
+        </g>
+      </symbol>
+      <symbol id="i-send" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m22 2-7 20-4-9-9-4z"/>
+          <path d="M22 2 11 13"/>
+        </g>
+      </symbol>
+      <symbol id="i-help" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M9.5 9a2.5 2.5 0 1 1 4 2c-1.5 1-2 1.5-2 3"/>
+          <path d="M12 17h.01"/>
+        </g>
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"/>
+          <path d="m13 6 6 6-6 6"/>
+        </g>
+      </symbol>
+      <symbol id="i-external" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <path d="M15 3h6v6"/>
+          <path d="M10 14 21 3"/>
+        </g>
+      </symbol>
+      <symbol id="i-branch" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="6" cy="6" r="3"/>
+          <circle cx="6" cy="18" r="3"/>
+          <circle cx="18" cy="18" r="3"/>
+          <path d="M6 9v6M6 15c0-4 4-3 6-3s6-1 6-3"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#inicio" aria-label="Inicio — Núcleo Linux UAGRM, guía de acceso Git">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <defs>
+            <linearGradient id="brand-grad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#2dd4a7"/>
+              <stop offset="1" stop-color="#0d9e6f"/>
+            </linearGradient>
+          </defs>
+          <rect width="32" height="32" rx="8" fill="url(#brand-grad)"/>
+          <path d="M9 10l5 4-5 4" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M16 18h7" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-title">Núcleo Linux UAGRM</span>
+          <span class="brand-subtitle">Guía de acceso Git</span>
+        </span>
+      </a>
+
+      <div class="theme-switch" role="group" aria-label="Cambiar tema del sitio">
+        <button type="button" class="theme-option" data-theme-pref="light" aria-pressed="false">
+          <svg class="icon" aria-hidden="true"><use href="#i-sun"/></svg>
+          <span>Claro</span>
+        </button>
+        <button type="button" class="theme-option" data-theme-pref="dark" aria-pressed="false">
+          <svg class="icon" aria-hidden="true"><use href="#i-moon"/></svg>
+          <span>Oscuro</span>
+        </button>
+        <button type="button" class="theme-option" data-theme-pref="auto" aria-pressed="false">
+          <svg class="icon" aria-hidden="true"><use href="#i-auto"/></svg>
+          <span>Automático</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="guide-progress" aria-label="Progreso de la guía: saltar a cada paso">
+    <div class="container">
+      <div class="progress-bar">
+        <span class="progress-fill" id="progress-fill"></span>
+      </div>
+      <ol class="progress-track">
+        <li class="progress-item"><a href="#paso-1" aria-label="Ir al paso 1: Crea tu cuenta"><span class="progress-dot">01</span></a></li>
+        <li class="progress-item"><a href="#paso-2" aria-label="Ir al paso 2: Espera la aprobación"><span class="progress-dot">02</span></a></li>
+        <li class="progress-item"><a href="#paso-3" aria-label="Ir al paso 3: Inicia sesión"><span class="progress-dot">03</span></a></li>
+        <li class="progress-item"><a href="#paso-4" aria-label="Ir al paso 4: Protege tu cuenta con 2FA"><span class="progress-dot">04</span></a></li>
+        <li class="progress-item"><a href="#paso-5" aria-label="Ir al paso 5: Usa Aegis Authenticator"><span class="progress-dot">05</span></a></li>
+        <li class="progress-item"><a href="#paso-6" aria-label="Ir al paso 6: Cuenta protegida"><span class="progress-dot">06</span></a></li>
+      </ol>
+    </div>
+  </nav>
+
+  <section class="hero" id="inicio" aria-labelledby="hero-title">
+    <div class="container hero-inner">
+      <p class="hero-eyebrow">
+        <span class="chip">Núcleo Linux UAGRM</span>
+        <span class="chip chip-soft">Plataforma Git</span>
+      </p>
+      <h1 class="hero-title" id="hero-title">Bienvenido a la plataforma Git</h1>
+      <p class="hero-subtitle">Guía para crear y proteger tu cuenta</p>
+      <p class="hero-desc">Aprende paso a paso cómo crear tu cuenta, obtener la aprobación y protegerla con autenticación de dos factores.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#paso-1">Ver la guía</a>
+        <a class="btn btn-ghost" href="#ayuda">Solicitar ayuda</a>
+      </div>
+      <svg class="hero-deco hero-deco--1" aria-hidden="true"><use href="#i-branch"/></svg>
+      <svg class="hero-deco hero-deco--2" aria-hidden="true"><use href="#i-shield"/></svg>
+      <svg class="hero-deco hero-deco--3" aria-hidden="true"><use href="#i-key"/></svg>
+    </div>
+  </section>
+
+  <main id="contenido">
+    <ol class="steps container">
+      <!-- PASO 1 -->
+      <li class="step reveal" id="paso-1">
+        <span class="step-number" aria-hidden="true">01</span>
+        <h2 class="step-title">Crea tu cuenta</h2>
+        <div class="step-visual" aria-hidden="true">
+          <div class="mock">
+            <div class="mock-bar">
+              <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+              <span class="mock-url">git.nluagrm.org/user/sign_up</span>
+            </div>
+            <div class="mock-body">
+              <div class="mock-head">
+                <span class="mock-mark"><svg class="icon"><use href="#i-branch"/></svg></span>
+                <span class="mock-h">Crea tu cuenta</span>
+                <span class="badge badge-accent"><svg class="icon"><use href="#i-check"/></svg>Registro gratuito</span>
+              </div>
+              <div class="field">
+                <span class="field-label">Nombre de usuario</span>
+                <span class="mock-input"><svg class="icon"><use href="#i-user"/></svg><span>nombre_usuario</span></span>
+              </div>
+              <div class="field">
+                <span class="field-label">Correo electrónico</span>
+                <span class="mock-input"><svg class="icon"><use href="#i-mail"/></svg><span>tu@correo.org</span></span>
+              </div>
+              <div class="field">
+                <span class="field-label">Contraseña</span>
+                <span class="mock-input"><svg class="icon"><use href="#i-lock"/></svg><span>••••••••</span></span>
+              </div>
+              <div class="field">
+                <span class="field-label">Repite la contraseña</span>
+                <span class="mock-input"><svg class="icon"><use href="#i-lock"/></svg><span>••••••••</span></span>
+              </div>
+              <span class="btn-mock btn-mock-accent">Crear cuenta</span>
+            </div>
+          </div>
+        </div>
+        <div class="step-body">
+          <p class="step-text">Crea gratuitamente tu cuenta en la plataforma Git de Núcleo Linux UAGRM.</p>
+          <p class="step-note"><svg class="icon"><use href="#i-check"/></svg>Registro gratuito</p>
+        </div>
+        <p class="sr-only">Ilustración: formulario de registro de Forgejo con campos de usuario, correo electrónico y contraseña, y botón para crear la cuenta.</p>
+      </li>
+
+      <!-- PASO 2 -->
+      <li class="step reveal" id="paso-2">
+        <span class="step-number" aria-hidden="true">02</span>
+        <h2 class="step-title">Espera la aprobación</h2>
+        <div class="step-visual" aria-hidden="true">
+          <div class="mock">
+            <div class="mock-bar">
+              <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+              <span class="mock-url">admin · revisión de cuentas</span>
+            </div>
+            <div class="mock-body">
+              <p class="mock-h mock-h--small">Cuentas pendientes</p>
+              <div class="review-card">
+                <span class="avatar">nL</span>
+                <span class="review-info">
+                  <span class="review-user">@tu_usuario</span>
+                  <span class="review-mail">tu@correo.org</span>
+                </span>
+                <span class="badge badge-warn">
+                  <span class="pulse-dot"></span>
+                  <svg class="icon"><use href="#i-clock"/></svg>
+                  Pendiente de aprobación
+                </span>
+              </div>
+              <div class="review-actions">
+                <span class="btn-mock btn-mock-ghost">Rechazar</span>
+                <span class="btn-mock btn-mock-accent"><svg class="icon"><use href="#i-check"/></svg>Aprobar</span>
+              </div>
+              <div class="review-admin">
+                <span class="avatar avatar--admin">AD</span>
+                <span class="review-admin-text"><span class="review-admin-name">Administrador</span><span class="review-admin-role">Revisando solicitudes de registro</span></span>
+                <span class="badge badge-ok"><svg class="icon"><use href="#i-check"/></svg>En revisión</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="step-body">
+          <p class="step-text">Después de registrarte, tu cuenta debe ser revisada y aceptada por los administradores.</p>
+          <p class="step-note step-note--warn"><svg class="icon"><use href="#i-clock"/></svg>Tu cuenta debe ser aprobada por un administrador antes de continuar.</p>
+        </div>
+        <p class="sr-only">Ilustración: tarjeta de cuenta con estado pendiente de aprobación y panel de administrador que revisa y aprueba la cuenta.</p>
+      </li>
+
+      <!-- PASO 3 -->
+      <li class="step reveal" id="paso-3">
+        <span class="step-number" aria-hidden="true">03</span>
+        <h2 class="step-title">Inicia sesión</h2>
+        <div class="step-visual" aria-hidden="true">
+          <div class="mock">
+            <div class="mock-bar">
+              <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+              <span class="mock-url">git.nluagrm.org/user/login</span>
+            </div>
+            <div class="mock-body">
+              <div class="mock-head">
+                <span class="mock-mark"><svg class="icon"><use href="#i-branch"/></svg></span>
+                <span class="mock-h">Inicia sesión</span>
+                <span class="badge badge-ok"><svg class="icon"><use href="#i-check"/></svg>Cuenta aprobada</span>
+              </div>
+              <div class="field">
+                <span class="field-label">Usuario o correo</span>
+                <span class="mock-input"><svg class="icon"><use href="#i-user"/></svg><span>tu@correo.org</span></span>
+              </div>
+              <div class="field">
+                <span class="field-label">Contraseña</span>
+                <span class="mock-input"><svg class="icon"><use href="#i-lock"/></svg><span>••••••••</span></span>
+              </div>
+              <span class="btn-mock btn-mock-accent">Iniciar sesión</span>
+            </div>
+          </div>
+        </div>
+        <div class="step-body">
+          <p class="step-text">Una vez aprobada tu cuenta, ingresa nuevamente a la plataforma con tus credenciales.</p>
+          <p class="step-note"><svg class="icon"><use href="#i-check"/></svg>Cuenta aprobada — ya puedes iniciar sesión</p>
+        </div>
+        <p class="sr-only">Ilustración: formulario de inicio de sesión con campos de usuario o correo y contraseña, con indicación de cuenta aprobada.</p>
+      </li>
+
+      <!-- PASO 4 -->
+      <li class="step step--wide reveal" id="paso-4">
+        <span class="step-number" aria-hidden="true">04</span>
+        <h2 class="step-title">Protege tu cuenta con 2FA</h2>
+        <div class="step-visual" aria-hidden="true">
+          <div class="flow">
+            <div class="flow-node mock">
+              <div class="mock-bar">
+                <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+                <span class="mock-url">Forgejo · configuración de seguridad</span>
+              </div>
+              <div class="mock-body">
+                <p class="mock-h mock-h--small">Seguridad de la cuenta</p>
+                <div class="setting-row">
+                  <span class="setting-icon"><svg class="icon"><use href="#i-shield"/></svg></span>
+                  <span class="setting-label">Autenticación de dos factores</span>
+                  <span class="toggle is-on" role="switch" aria-checked="true" aria-label="Autenticación de dos factores activada"><span class="toggle-knob"></span></span>
+                </div>
+                <div class="qr-card">
+                  <svg class="qr-svg" viewBox="0 0 21 21"></svg>
+                </div>
+                <p class="qr-hint">Escanea este código con tu aplicación autenticadora</p>
+              </div>
+            </div>
+
+            <div class="flow-arrow">
+              <svg class="icon icon-arrow"><use href="#i-arrow"/></svg>
+              <span>Código QR</span>
+            </div>
+
+            <div class="flow-node phone" style="--phone-w: 210px">
+              <div class="phone-screen">
+                <div class="phone-top"><span>21:45</span><span class="phone-signal"></span></div>
+                <p class="aegis-title">Aegis Authenticator</p>
+                <div class="aegis-account">
+                  <span class="aegis-issuer">Núcleo Linux UAGRM</span>
+                  <span class="aegis-user">tu@correo.org</span>
+                  <span class="aegis-code">482 913</span>
+                  <span class="aegis-timer-row"><svg class="aegis-timer" viewBox="0 0 36 36"><circle class="timer-track" cx="18" cy="18" r="15"/><circle class="timer-fill" cx="18" cy="18" r="15"/></svg><span>30 s</span></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flow-arrow">
+              <svg class="icon icon-arrow"><use href="#i-arrow"/></svg>
+              <span>Código de 6 dígitos</span>
+            </div>
+
+            <div class="flow-node flow-success">
+              <svg class="icon icon-check-big"><use href="#i-check"/></svg>
+              <span>Cuenta<br>protegida</span>
+            </div>
+          </div>
+        </div>
+        <div class="step-body">
+          <p class="step-text">Al ingresar por primera vez, asegura tu cuenta activando la autenticación de dos factores (2FA).</p>
+          <p class="step-note"><svg class="icon"><use href="#i-shield"/></svg>2FA protege tu cuenta aunque alguien obtenga tu contraseña.</p>
+        </div>
+        <p class="sr-only">Ilustración: secuencia de configuración 2FA que va de Forgejo, pasando por un código QR, la aplicación Aegis Authenticator, un código temporal de 6 dígitos y termina con el estado de cuenta protegida.</p>
+      </li>
+
+      <!-- PASO 5 -->
+      <li class="step reveal" id="paso-5">
+        <span class="step-number" aria-hidden="true">05</span>
+        <h2 class="step-title">Usa Aegis Authenticator</h2>
+        <div class="step-visual" aria-hidden="true">
+          <div class="phone" style="--phone-w: 260px">
+            <div class="phone-screen">
+              <div class="phone-top"><span>21:45</span><span class="phone-signal"></span></div>
+              <div class="aegis-head">
+                <svg class="icon"><use href="#i-shield"/></svg>
+                <span>Aegis Authenticator</span>
+                <span class="aegis-count">2</span>
+              </div>
+              <div class="aegis-account aegis-account-active">
+                <span class="aegis-issuer">Núcleo Linux UAGRM</span>
+                <span class="aegis-user">tu@correo.org</span>
+                <span class="aegis-code">482 913</span>
+                <span class="aegis-timer-row">
+                  <svg class="aegis-timer" viewBox="0 0 36 36"><circle class="timer-track" cx="18" cy="18" r="15"/><circle class="timer-fill" cx="18" cy="18" r="15"/><text class="timer-label" x="18" y="21" text-anchor="middle">30</text></svg>
+                  <span>Renueva en 30 s</span>
+                </span>
+              </div>
+              <div class="aegis-account">
+                <span class="aegis-issuer">Otra cuenta</span>
+                <span class="aegis-user">cuenta@correo.org</span>
+                <span class="aegis-code aegis-code-muted">• • • • • •</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="step-body">
+          <p class="step-text">Se recomienda utilizar Aegis Authenticator para administrar tus códigos de autenticación de dos factores.</p>
+          <p class="step-note"><svg class="icon"><use href="#i-phone"/></svg>Aegis Authenticator es una aplicación recomendada para gestionar tus códigos 2FA.</p>
+        </div>
+        <p class="sr-only">Ilustración: teléfono móvil con la aplicación Aegis Authenticator mostrando una cuenta configurada, un código de 6 dígitos y un temporizador de renovación.</p>
+      </li>
+
+      <!-- PASO 6 -->
+      <li class="step reveal" id="paso-6">
+        <span class="step-number" aria-hidden="true">06</span>
+        <h2 class="step-title">¡Cuenta protegida!</h2>
+        <div class="step-visual" aria-hidden="true">
+          <div class="protected-scene">
+            <svg class="shield shield-anim" viewBox="0 0 24 24">
+              <path class="shield-body" d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5z"/>
+              <path class="shield-inner" d="M8.5 11.5 11 14l4.5-4.5"/>
+              <path class="shield-lock" d="M12 9.4V7.2m-1.4 2.2h2.8a1 1 0 0 1 1 1v.9a1 1 0 0 1-1 1h-2.8a1 1 0 0 1-1-1v-.9a1 1 0 0 1 1-1z"/>
+            </svg>
+            <div class="protected-card">
+              <div class="protected-row">
+                <span class="avatar">nL</span>
+                <span class="protected-user">
+                  <span class="protected-name">@tu_usuario</span>
+                  <span class="protected-role">Forgejo · Plataforma Git</span>
+                </span>
+                <span class="badge badge-ok"><svg class="icon"><use href="#i-check"/></svg>Cuenta protegida</span>
+              </div>
+              <p class="protected-msg"><svg class="icon"><use href="#i-check"/></svg>¡Listo! Ya puedes utilizar la plataforma Git.</p>
+            </div>
+          </div>
+        </div>
+        <div class="step-body">
+          <p class="step-text">Activa 2FA y tu cuenta estará lista para utilizar la plataforma Git de Núcleo Linux UAGRM.</p>
+          <p class="step-note"><svg class="icon"><use href="#i-check"/></svg>¡Asegura tu cuenta y listo!</p>
+        </div>
+        <p class="sr-only">Ilustración: escudo de seguridad con candado y palomita junto a una tarjeta que muestra el estado de cuenta protegida.</p>
+      </li>
+    </ol>
+  </main>
+
+  <section class="help" id="ayuda" aria-labelledby="ayuda-title">
+    <div class="container">
+      <div class="help-head reveal">
+        <p class="section-kicker">Asistencia</p>
+        <h2 class="help-title" id="ayuda-title">¿Necesitas ayuda?</h2>
+        <p class="help-intro">Si necesitas que tu cuenta sea validada lo antes posible o perdiste el acceso a tu autenticación de dos factores, solicita asistencia.</p>
+      </div>
+
+      <div class="help-grid">
+        <article class="help-card reveal">
+          <span class="help-icon"><svg class="icon"><use href="#i-help"/></svg></span>
+          <h3 class="help-card-title">¿Necesitas validar tu cuenta?</h3>
+          <p class="help-card-text">Solicita a los administradores la revisión de tu cuenta.</p>
+        </article>
+        <article class="help-card reveal">
+          <span class="help-icon"><svg class="icon"><use href="#i-key"/></svg></span>
+          <h3 class="help-card-title">¿Perdiste tu autenticación de dos factores?</h3>
+          <p class="help-card-text">Solicita ayuda para recuperar el acceso.</p>
+        </article>
+      </div>
+
+      <p class="help-note reveal"><svg class="icon"><use href="#i-mail"/></svg>Al solicitar asistencia, indica tu cuenta/correo y explica brevemente tu petición.</p>
+
+      <div class="help-cta reveal">
+        <a class="btn btn-telegram" href="https://t.me/FershoUno" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" aria-hidden="true"><use href="#i-send"/></svg>
+          Solicitar ayuda por Telegram
+          <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="brand-title">Núcleo Linux UAGRM</span>
+        <span class="brand-subtitle">Plataforma Git</span>
+      </div>
+      <p class="footer-meta">Guía visual para crear y proteger tu cuenta en la plataforma Git de Núcleo Linux UAGRM.</p>
+      <a class="footer-link" href="https://git.nluagrm.org" target="_blank" rel="noopener noreferrer">Ir a la plataforma Git</a>
+      <p class="footer-copy">© <span id="year">2026</span> Núcleo Linux UAGRM</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

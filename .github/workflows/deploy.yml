@@ -1,0 +1,46 @@
+name: Deploy a GitHub Pages
+
+# Publica el contenido de ./public/ en la raíz de la rama "public".
+# GitHub Pages debe configurarse con: Branch: public, Folder: / (root).
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Publicar public/ en la rama public
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Verificar que public/index.html existe
+        run: test -f public/index.html
+
+      - name: Ensamblar el contenido a publicar
+        run: |
+          rm -rf _deploy
+          mkdir -p _deploy
+          cp -a public/. _deploy/
+
+      - name: Publicar en la rama public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd _deploy
+          git init -q
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Deploy: actualizar sitio web (${GITHUB_SHA:0:7})"
+          git push -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:public
