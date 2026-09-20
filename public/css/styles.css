@@ -652,7 +652,13 @@ a { color: var(--accent); }
 }
 .badge-accent { background: var(--accent-soft); color: var(--accent-strong); border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border)); }
 .badge-ok { background: var(--ok-soft); color: var(--ok-strong); border: 1px solid var(--ok-border); }
-.badge-warn { background: var(--warn-soft); color: var(--warn-strong); border: 1px solid var(--warn-border); }
+.badge-warn {
+  background: var(--warn-soft);
+  color: var(--warn-strong);
+  border: 1px solid var(--warn-border);
+  white-space: normal;
+  line-height: 1.3;
+}
 
 /* 11. Paso 2 — revisión de cuenta ---------------------------- */
 .review-card {
@@ -1119,6 +1125,12 @@ a { color: var(--accent); }
   .help-grid { grid-template-columns: minmax(0, 1fr); }
   .mock { max-width: 100%; }
   .step-note { font-size: .86rem; }
+}
+
+@media (max-width: 480px) {
+  .review-card .review-info {
+    min-width: max-content;
+  }
 }
 
 @media (max-width: 380px) {
