@@ -164,6 +164,8 @@ a { color: var(--accent); }
 }
 
 /* 5. Header -------------------------------------------------- */
+html { scroll-padding-top: var(--sticky-h, 68px); }
+
 .site-header {
   position: sticky;
   top: 0;
@@ -985,7 +987,7 @@ a { color: var(--accent); }
 .help {
   border-top: 1px solid var(--border);
   background: var(--surface-2);
-  padding-block: clamp(3rem, 7vw, 5.5rem);
+  padding-block: clamp(2rem, 4vw, 3rem);
 }
 .help-head { text-align: center; max-width: 720px; margin-inline: auto; }
 .help-title { font-size: clamp(1.7rem, 4vw, 2.4rem); margin-top: .4rem; }
@@ -1039,8 +1041,7 @@ a { color: var(--accent); }
 
 /* 16. Footer -------------------------------------------------- */
 .site-footer {
-  border-top: 1px solid var(--border);
-  background: var(--bg);
+  background: var(--surface-2);
   padding-block: 2.2rem;
 }
 .footer-inner {

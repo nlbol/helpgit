@@ -125,6 +125,9 @@
   function setHeaderVars() {
     if (!header) return;
     root.style.setProperty('--header-h', header.offsetHeight + 'px');
+    var gp = document.querySelector('.guide-progress');
+    var sticky = header.offsetHeight + (gp ? gp.offsetHeight : 0);
+    root.style.setProperty('--sticky-h', sticky + 'px');
   }
   setHeaderVars();
   window.addEventListener('resize', setHeaderVars);
@@ -196,4 +199,105 @@
      ------------------------------------------------------------ */
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
+
+  /* ------------------------------------------------------------
+     8. Navegación entre pasos (anclas + flechas, centrado)
+     ------------------------------------------------------------ */
+  var navSteps = Array.prototype.slice.call(document.querySelectorAll('.step[id]'));
+  var ayudaEl = document.getElementById('ayuda');
+  var navTargets = navSteps.concat(ayudaEl ? [ayudaEl] : []);
+  var navReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function getStickyBar() {
+    var h = document.getElementById('site-header');
+    var gp = document.querySelector('.guide-progress');
+    return (h ? h.offsetHeight : 0) + (gp ? gp.offsetHeight : 0);
+  }
+
+  function isInteractiveTarget(el) {
+    while (el && el.nodeType === 1) {
+      if (el.isContentEditable) return true;
+      var tag = el.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' ||
+          tag === 'OPTION' || tag === 'BUTTON' || tag === 'SUMMARY' ||
+          (tag === 'A' && el.getAttribute('href'))) return true;
+      var role = el.getAttribute && el.getAttribute('role');
+      if (role && /button|menuitem|combobox|slider|switch|option/.test(role)) return true;
+      el = el.parentNode;
+    }
+    return false;
+  }
+
+  function navBehavior() {
+    return navReducedMotion ? 'auto' : 'smooth';
+  }
+
+  function scrollToElement(el) {
+    if (!el) return;
+    var bars = getStickyBar();
+    var vp = window.innerHeight;
+    var region = Math.max(vp - bars, 0);
+    var rect = el.getBoundingClientRect();
+    var absTop = rect.top + window.scrollY;
+    var target = absTop - bars - Math.max(0, (region - rect.height) / 2);
+    var max = Math.max(document.documentElement.scrollHeight - vp, 0);
+    target = Math.min(Math.max(target, 0), max);
+    window.scrollTo({ top: target, left: 0, behavior: navBehavior() });
+  }
+
+  function nearestStepIndex(midY) {
+    var best = 0, bestD = Infinity;
+    for (var i = 0; i < navTargets.length; i++) {
+      var r = navTargets[i].getBoundingClientRect();
+      var d = Math.abs(r.top + r.height / 2 - midY);
+      if (d < bestD) { bestD = d; best = i; }
+    }
+    return navTargets.length ? best : -1;
+  }
+
+  function stepNavTarget(dir) {
+    var bars = getStickyBar();
+    var vp = window.innerHeight;
+    var regionMid = bars + (vp - bars) / 2;
+    var max = Math.max(document.documentElement.scrollHeight - vp, 0);
+    if (!navTargets.length) return { top: dir === 1 ? max : 0 };
+
+    var firstTop = navTargets[0].getBoundingClientRect().top + window.scrollY;
+    var lastBottom = navTargets[navTargets.length - 1].getBoundingClientRect().bottom + window.scrollY;
+
+    if (window.scrollY + regionMid < firstTop) {
+      return dir === 1 ? navTargets[0] : { top: 0 };
+    }
+    if (window.scrollY + regionMid > lastBottom) {
+      return dir === -1 ? navTargets[navTargets.length - 1] : { top: max };
+    }
+    var idx = nearestStepIndex(regionMid);
+    if (dir === 1) return idx < navTargets.length - 1 ? navTargets[idx + 1] : { top: max };
+    return idx > 0 ? navTargets[idx - 1] : { top: 0 };
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    if (isInteractiveTarget(e.target)) return;
+    var target = stepNavTarget(e.key === 'ArrowDown' ? 1 : -1);
+    if (!target) return;
+    e.preventDefault();
+    if (target.top !== undefined) {
+      window.scrollTo({ top: target.top, left: 0, behavior: navBehavior() });
+    } else {
+      scrollToElement(target);
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var link = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!link || link.classList.contains('skip-link')) return;
+    var id = link.getAttribute('href').slice(1);
+    var el = id ? document.getElementById(id) : null;
+    if (!el) return;
+    e.preventDefault();
+    scrollToElement(el);
+  });
 })();
